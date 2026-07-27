@@ -1,0 +1,6 @@
+,MAE,RMSE,MAPE_percent,R2
+Ensemble_Average,1.3667,1.9392,20.9215,0.9519
+Random_Forest,1.3687,1.9461,21.7453,0.9515
+Gradient_Boosting,1.4095,1.9821,20.7188,0.9497
+Linear_Regression,1.4591,2.0502,21.4792,0.9462
+Persistence_Baseline,1.5747,2.3142,21.3728,0.9315

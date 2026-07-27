@@ -1,0 +1,9 @@
+data/*.csv
+data/*.zip
+outputs/.cache/
+outputs/.matplotlib/
+outputs/cleaned_weather_data.csv
+outputs/models/
+__pycache__/
+.DS_Store
+.venv/
