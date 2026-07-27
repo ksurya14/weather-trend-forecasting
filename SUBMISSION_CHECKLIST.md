@@ -16,6 +16,7 @@ Use this checklist before sending the Google Form.
 - `README.md`
 - `requirements.txt`
 - `src/weather_trend_forecasting.py`
+- `data/GlobalWeatherRepository.csv`
 - `report/Weather_Trend_Forecasting_Report.md`
 - `outputs/model_metrics.csv`
 - `outputs/forecast_predictions.csv`
@@ -26,7 +27,7 @@ Use this checklist before sending the Google Form.
 - `outputs/country_spatial_temperature_summary.csv`
 - `outputs/figures/`
 
-The raw Kaggle CSV, cleaned full CSV, and trained model binaries are ignored by default because they are large or reproducible. If the evaluator requires the raw data, add it only if Kaggle sharing terms allow it.
+The cleaned full CSV and trained model binaries are ignored by default because they are large and reproducible from the included raw CSV.
 
 ## Demo Video Script
 

@@ -10,23 +10,21 @@ Source: https://www.pmaccelerator.io/
 
 ## Dataset
 
-Download the dataset from Kaggle:
-
-https://www.kaggle.com/datasets/nelgiriyewithana/global-weather-repository
-
-Place the CSV file here:
-
-```text
-data/Global Weather Repository.csv
-```
-
-The script also accepts the filename used in this project:
+The raw dataset CSV is included in this repository at:
 
 ```text
 data/GlobalWeatherRepository.csv
 ```
 
-The raw CSV is intentionally ignored by Git because Kaggle datasets may have separate sharing terms.
+Dataset source on Kaggle:
+
+https://www.kaggle.com/datasets/nelgiriyewithana/global-weather-repository
+
+The script also accepts Kaggle's spaced filename if you download a fresh copy:
+
+```text
+data/Global Weather Repository.csv
+```
 
 ## Project Structure
 
@@ -34,7 +32,7 @@ The raw CSV is intentionally ignored by Git because Kaggle datasets may have sep
 weather-trend-forecasting/
   data/
     README.md
-    Global Weather Repository.csv      # add locally
+    GlobalWeatherRepository.csv
   src/
     weather_trend_forecasting.py
   report/
