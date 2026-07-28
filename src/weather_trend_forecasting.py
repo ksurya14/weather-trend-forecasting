@@ -19,7 +19,9 @@ import math
 import os
 import re
 import warnings
+from contextlib import redirect_stderr, redirect_stdout
 from dataclasses import dataclass
+from io import StringIO
 from pathlib import Path
 from typing import Iterable
 
@@ -89,6 +91,18 @@ def find_column(columns: Iterable[str], candidates: Iterable[str], required: boo
     if required:
         raise ValueError(f"Required column not found. Tried: {', '.join(candidates)}")
     return None
+
+
+def quiet_country_to_continent(countries: pd.Series) -> pd.Series:
+    """Convert country names to continents without flooding the terminal for unmatched names."""
+    if coco is None:
+        return pd.Series(["Unknown"] * len(countries), index=countries.index)
+
+    unique_countries = pd.Series(countries.dropna().unique())
+    with redirect_stdout(StringIO()), redirect_stderr(StringIO()):
+        converted = coco.convert(names=unique_countries.tolist(), to="continent", not_found="Unknown")
+    country_map = dict(zip(unique_countries.tolist(), converted))
+    return countries.map(country_map).fillna("Unknown")
 
 
 def discover_columns(df: pd.DataFrame) -> Columns:
@@ -176,8 +190,8 @@ def clean_data(df: pd.DataFrame, columns: Columns) -> tuple[pd.DataFrame, dict]:
     scaled_cols = [f"{col}_scaled" for col in numeric_cols]
     clipped[scaled_cols] = scaler.fit_transform(clipped[numeric_cols])
 
-    if columns.country and "continent" not in clipped.columns and coco is not None:
-        clipped["continent"] = coco.convert(names=clipped[columns.country].tolist(), to="continent", not_found="Unknown")
+    if columns.country and "continent" not in clipped.columns:
+        clipped["continent"] = quiet_country_to_continent(clipped[columns.country])
 
     clipped = clipped.sort_values(columns.date).reset_index(drop=True)
     cleaning_summary = {
